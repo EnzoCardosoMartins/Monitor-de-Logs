@@ -10,7 +10,6 @@ string ler_log(string arq_name){
     fs::path caminho = "./logs";
     fs::path log_path = caminho / arq_name;
 
-
     if(fs::exists(log_path)){
         ifstream log(log_path);
         string linha;
@@ -24,5 +23,12 @@ string ler_log(string arq_name){
     } else{
         return "Erro ao abrir o arquivo";
     }
+}
 
+string ler_arq(string arq_path){
+    return "";
+}
+
+string escrever_log_total(string log){
+    return "";
 }

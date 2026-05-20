@@ -6,3 +6,6 @@ TEST(MonitorLog, LerLog) {
     EXPECT_EQ(ler_log("log_teste.txt"), "Teste");
 }
 
+TEST(MonitorLog, LerLogIniexistente) {
+    EXPECT_EQ(ler_log("log_inexistente.txt"), "Erro ao abrir o arquivo");
+}

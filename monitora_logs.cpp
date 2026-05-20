@@ -7,30 +7,44 @@ namespace fs = std::filesystem;
 
 vector<string> ler_arq(string arq_path){
 
+    vector<string> logs;
+
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);
         string linha;
 
         if(arq.is_open()){
-            getline(arq, linha);
+            while(getline(arq, linha)){
+                logs.push_back(linha);
+            }
             arq.close();
-            return linha;
-        } else return "Erro ao abrir o arquivo";     
+        } else{
+            logs.push_back("Erro ao abrir o arquivo");
+        }      
 
     } else{
-        return "Erro ao abrir o arquivo";
+        logs.push_back("Erro ao abrir o arquivo");
     }
+
+    return logs;
 }
+
+
+
 
 string escrever_log_total(string log){
 
     ofstream arq("./totais/total_log_teste.txt");
 
     if(arq.is_open()){
-        arq << ler_arq(log) << endl;
+        vector<string> logs = ler_arq(log);
+        for(string linha : logs){
+            arq << linha << endl;
+        }
     } else{
         return "Erro ao escrever no arquivo.";
     }
 
+    arq.close();
     return "./totais/total_log_teste.txt";
 }

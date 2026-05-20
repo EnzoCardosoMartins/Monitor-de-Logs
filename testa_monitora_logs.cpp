@@ -3,13 +3,13 @@
 #include "monitora_logs.hpp"
 
 TEST(MonitorLog, LerLog) {
-    EXPECT_EQ(ler_log("log_teste.txt"), "Teste");
+    EXPECT_EQ(ler_arq("./logs/log_teste.txt"), "Teste");
 }
 
 TEST(MonitorLog, LerLogIniexistente) {
-    EXPECT_EQ(ler_log("log_inexistente.txt"), "Erro ao abrir o arquivo");
+    EXPECT_EQ(ler_arq("log_inexistente.txt"), "Erro ao abrir o arquivo");
 }
 
 TEST(MonitorLog, EscreverLogTotal) {
-    EXPECT_EQ(ler_arq(escrever_log_total("log_teste.txt")), "Teste");
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste.txt")), "Teste");
 }

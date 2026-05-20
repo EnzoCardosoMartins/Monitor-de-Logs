@@ -5,18 +5,15 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-string ler_log(string arq_name){
+string ler_arq(string arq_path){
 
-    fs::path caminho = "./logs";
-    fs::path log_path = caminho / arq_name;
-
-    if(fs::exists(log_path)){
-        ifstream log(log_path);
+    if(fs::exists(arq_path)){
+        ifstream arq(arq_path);
         string linha;
 
-        if(log.is_open()){
-            getline(log, linha);
-            log.close();
+        if(arq.is_open()){
+            getline(arq, linha);
+            arq.close();
             return linha;
         } else return "Erro ao abrir o arquivo";     
 
@@ -25,10 +22,15 @@ string ler_log(string arq_name){
     }
 }
 
-string ler_arq(string arq_path){
-    return "";
-}
-
 string escrever_log_total(string log){
-    return "";
+
+    ofstream arq("./totais/total_log_teste.txt");
+
+    if(arq.is_open()){
+        arq << ler_arq(log) << endl;
+    } else{
+        return "Erro ao escrever no arquivo.";
+    }
+
+    return "./totais/total_log_teste.txt";
 }

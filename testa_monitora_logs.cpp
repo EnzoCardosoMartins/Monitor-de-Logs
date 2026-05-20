@@ -13,3 +13,8 @@ TEST(MonitorLog, LerLogIniexistente) {
 TEST(MonitorLog, EscreverLogTotal) {
     EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste.txt")), "Teste");
 }
+
+TEST(MonitorLog, LerLogVariasLinhas) {
+    vector<string> logs = {"Teste1", "Teste2", "Teste3"};
+    EXPECT_EQ(ler_arq("./logs/log_teste_multiplas_linhas.txt"), logs);
+}

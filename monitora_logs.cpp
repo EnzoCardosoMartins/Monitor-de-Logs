@@ -5,7 +5,7 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-string ler_arq(string arq_path){
+vector<string> ler_arq(string arq_path){
 
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);

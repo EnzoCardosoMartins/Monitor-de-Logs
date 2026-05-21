@@ -1,9 +1,11 @@
 // Copyright 2026 Enzo Cardoso Martins
-#ifndef LOGMONITOR_HPP_
-#define LOGMONITOR_HPP_
-#include <bits/stdc++.h>
-#include <filesystem>
-using namespace std;
+#ifndef MONITORA_LOGS_HPP_
+#define MONITORA_LOGS_HPP_
+#include <bits/stdc++.h>  // NOLINT(build/c++17)
+#include <filesystem>  // NOLINT(build/c++17)
+#include <string>
+#include <vector>
+using namespace std;  // NOLINT(build/c++17)
 namespace fs = std::filesystem;
 
 string escrever_log_total(string log);
@@ -12,4 +14,4 @@ int processar_lista_mestra(string list_path);
 vector<string> ler_logs(string log_path);
 vector<string> sort_logs(vector<string>);
 
-#endif  // LOGMONITOR_HPP_
+#endif  // MONITORA_LOGS_HPP_

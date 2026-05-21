@@ -60,3 +60,8 @@ TEST(MonitorLog, FormatacaoDeData) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteData3"};
     EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_data.txt")), logs);
 }
+
+TEST(MonitorLog, FormatacaoDeHora) {
+    vector<string> logs = {"19/10/2006 10:07:23 TesteData3"};
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_hora.txt")), logs);
+}

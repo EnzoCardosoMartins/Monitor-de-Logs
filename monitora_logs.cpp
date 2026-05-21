@@ -60,6 +60,7 @@ string escrever_log_total(string log){
     string string_total_path = ("./totais/total_");
     fs::path total_path = string_total_path+str_log_path;
     ofstream arq(total_path);
+    
 
     if(arq.is_open()){
         vector<string> logs = ler_logs(log);

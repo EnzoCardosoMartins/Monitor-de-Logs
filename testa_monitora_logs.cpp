@@ -69,4 +69,11 @@ TEST(MonitorLog, FormatacaoDeHora) {
 TEST(MonitorLog, FormatacaoTamanho) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteTamanho2"};
     EXPECT_EQ(ler_logs(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
+}
+
+
+TEST(MonitorLog, OrdenacaoDosLogs) {
+    vector<string> logs = {"20/10/2006 10:07:23 TesteTamanho1", "19/10/2006 10:07:23 TesteTamanho2", "18/10/2006 10:07:24 TesteTamanho3", "18/10/2006 10:07:23 TesteTamanho4"};
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
 }

@@ -10,7 +10,7 @@ vector<string> ler_arq(string arq_path){
 
     vector<string> logs;
 
-    regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.{1,100}$");
+    //regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.{1,100}$");
 
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);
@@ -18,7 +18,8 @@ vector<string> ler_arq(string arq_path){
 
         if(arq.is_open()){
             while(getline(arq, linha)){
-                if(regex_match(linha, padrao)) logs.push_back(linha);
+                //if(regex_match(linha, padrao)) 
+                logs.push_back(linha);
             }
             arq.close();
         } else{
@@ -35,6 +36,23 @@ vector<string> ler_arq(string arq_path){
 
 
 
+
+vector<string> ler_logs(string log_path){
+
+    vector<string> logs = ler_arq(log_path);
+
+    if(logs.at(0) == "Erro ao abrir o arquivo") return logs;
+
+    regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.{1,100}$");
+    vector<string> logs_formatados;
+    for(string log : logs){
+        if(regex_match(log, padrao)) logs_formatados.push_back(log);
+    }
+
+    return logs_formatados;
+}
+
+
 string escrever_log_total(string log){
 
     fs::path log_path = log;
@@ -48,6 +66,7 @@ string escrever_log_total(string log){
 
 
     if(arq.is_open()){
+        vector<string> logs = ler_logs(log);
         for(string linha : logs){
             arq << linha << endl;
         }

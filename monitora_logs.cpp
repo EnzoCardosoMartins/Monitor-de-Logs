@@ -10,8 +10,6 @@ vector<string> ler_arq(string arq_path){
 
     vector<string> logs;
 
-    //regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.{1,100}$");
-
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);
         string linha;
@@ -32,9 +30,6 @@ vector<string> ler_arq(string arq_path){
 
     return logs;
 }
-
-
-
 
 
 vector<string> ler_logs(string log_path){
@@ -59,15 +54,30 @@ string escrever_log_total(string log){
     string str_log_path = log_path.filename().string();
     string string_total_path = ("./totais/total_");
     fs::path total_path = string_total_path+str_log_path;
-    ofstream arq(total_path);
-    vector<string> logs = ler_arq(log);
-
+    fs::create_directories("./totais");
+    vector<string> logs = ler_logs(log);
+    vector<string> todos_logs;
+    todos_logs.insert(todos_logs.end(), logs.begin(), logs.end());
     
+    if(fs::exists(total_path)){
+        vector<string> logs_antigos = ler_arq(total_path.string());
+        todos_logs.insert(todos_logs.end(), logs_antigos.begin(), logs_antigos.end());
+    }
+
+    std::sort(todos_logs.begin(), todos_logs.end(), [](const string& a, const string& b) {
+        int dA, mA, yA, hA, minA, sA;
+        int dB, mB, yB, hB, minB, sB;
+        
+        sscanf(a.c_str(), "%d/%d/%d %d:%d:%d", &dA, &mA, &yA, &hA, &minA, &sA);
+        sscanf(b.c_str(), "%d/%d/%d %d:%d:%d", &dB, &mB, &yB, &hB, &minB, &sB);
+        
+        return std::tie(yA, mA, dA, hA, minA, sA) < std::tie(yB, mB, dB, hB, minB, sB);
+    });
 
 
+    ofstream arq(total_path);
     if(arq.is_open()){
-        vector<string> logs = ler_logs(log);
-        for(string linha : logs){
+        for(string linha : todos_logs){
             arq << linha << endl;
         }
     } else{

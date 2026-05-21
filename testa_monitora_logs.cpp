@@ -15,6 +15,7 @@ TEST(MonitorLog, LerLogIniexistente) {
 TEST(MonitorLog, EscreverLogTotal) {
     vector<string> log_teste = {"19/10/2006 10:07:23 Teste"};
     EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste.txt")), log_teste);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, LerLogVariasLinhas) {
@@ -25,11 +26,13 @@ TEST(MonitorLog, LerLogVariasLinhas) {
 TEST(MonitorLog, EscreverArquivoInexistente) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteArquivoIn1", "19/10/2006 10:07:23 TesteArquivoIn2", "19/10/2006 10:07:23 TesteArquivoIn3"};
     EXPECT_EQ(ler_logs(escrever_log_total("./logs/log_teste_arq_in.txt")), logs);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, LeituraListaMestra) {
     //analisar a lista mestra
     EXPECT_EQ(processar_lista_mestra("./lista_mestra.txt"), 1);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, LeituraListaMestra2) {
@@ -54,26 +57,31 @@ TEST(MonitorLog, LeituraListaMestra3) {
     EXPECT_EQ(ler_logs(escrever_log_total(logs.at(0))), log1);    
     EXPECT_EQ(ler_logs(escrever_log_total(logs.at(1))), log2);    
     EXPECT_EQ(ler_logs(escrever_log_total(logs.at(2))), log3);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, FormatacaoDeData) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteData3"};
     EXPECT_EQ(ler_logs(escrever_log_total("./logs/log_teste_data.txt")), logs);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, FormatacaoDeHora) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteData3"};
     EXPECT_EQ(ler_logs(escrever_log_total("./logs/log_teste_hora.txt")), logs);
+    std::filesystem::remove_all("./totais");
 }
 
 TEST(MonitorLog, FormatacaoTamanho) {
     vector<string> logs = {"19/10/2006 10:07:23 TesteTamanho2"};
     EXPECT_EQ(ler_logs(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
+    std::filesystem::remove_all("./totais");
     EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
+    std::filesystem::remove_all("./totais");
 }
 
-
 TEST(MonitorLog, OrdenacaoDosLogs) {
-    vector<string> logs = {"20/10/2006 10:07:23 TesteTamanho1", "19/10/2006 10:07:23 TesteTamanho2", "18/10/2006 10:07:24 TesteTamanho3", "18/10/2006 10:07:23 TesteTamanho4"};
-    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_tamanho.txt")), logs);
+    vector<string> logs = {"18/10/2006 10:07:23 TesteTamanho4", "18/10/2006 10:07:24 TesteTamanho3", "19/10/2006 10:07:23 TesteTamanho2", "20/10/2006 10:07:23 TesteTamanho1"};
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_ordenacao.txt")), logs);
+    std::filesystem::remove_all("./totais");
 }

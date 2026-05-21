@@ -10,7 +10,7 @@ vector<string> ler_arq(string arq_path){
 
     vector<string> logs;
 
-    regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.*$");
+    regex padrao("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}\\s+([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\s+.{1,100}$");
 
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);

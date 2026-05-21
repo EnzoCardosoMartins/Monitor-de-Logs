@@ -9,5 +9,6 @@ namespace fs = std::filesystem;
 string escrever_log_total(string log);
 vector<string> ler_arq(string arq_path);
 int processar_lista_mestra(string list_path);
+vector<string> sort_logs(vector<string>);
 
 #endif  // LOGMONITOR_HPP_

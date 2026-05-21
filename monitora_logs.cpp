@@ -57,5 +57,12 @@ string escrever_log_total(string log){
 
 int processar_lista_mestra(string list_path){
 
-    return -1;
+    if(!fs::exists(list_path)) return 0;
+
+    vector<string> logs = ler_arq(list_path);
+    for(string log : logs){
+        escrever_log_total(log);
+    }
+
+    return 1;
 }

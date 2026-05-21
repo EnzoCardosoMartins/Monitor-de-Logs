@@ -26,3 +26,8 @@ TEST(MonitorLog, EscreverArquivoInexistente) {
     vector<string> logs = {"TesteArquivoIn1", "TesteArquivoIn2", "TesteArquivoIn3"};
     EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_arq_in.txt")), logs);
 }
+
+TEST(MonitorLog, LeituraListaMestra) {
+    //analisar a lista mestra
+    EXPECT_EQ(processar_lista_mestra("./lista_mestra.txt"), 1);
+}

@@ -1,0 +1,3 @@
+./logs/Log1.txt
+./logs/Log2.txt
+./logs/Log3.txt

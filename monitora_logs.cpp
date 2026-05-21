@@ -53,3 +53,9 @@ string escrever_log_total(string log){
     string str_arq_path = total_path.string();
     return str_arq_path;
 }
+
+
+int processar_lista_mestra(string list_path){
+
+    return -1;
+}

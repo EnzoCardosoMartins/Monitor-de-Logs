@@ -31,3 +31,15 @@ TEST(MonitorLog, LeituraListaMestra) {
     //analisar a lista mestra
     EXPECT_EQ(processar_lista_mestra("./lista_mestra.txt"), 1);
 }
+
+TEST(MonitorLog, LeituraListaMestra2) {
+    vector<string> logs = {"./logs/Log1.txt", "./logs/Log2.txt", "./logs/Log3.txt"};
+    vector<string> log1 = {"TesteLog1", "TesteLog12", "TesteLog13"};
+    vector<string> log2 = {"TesteLog21", "TesteLog22", "TesteLog23"};
+    vector<string> log3 = {"TesteLog31", "TesteLog32", "TesteLog33"};
+    
+    //Analisar os logs
+    EXPECT_EQ(ler_arq(logs.at(0)), log1);    
+    EXPECT_EQ(ler_arq(logs.at(1)), log2);    
+    EXPECT_EQ(ler_arq(logs.at(2)), log3);
+}

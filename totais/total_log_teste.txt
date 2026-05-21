@@ -1,3 +1,1 @@
-TesteArquivoIn1
-TesteArquivoIn2
-TesteArquivoIn3
+Teste

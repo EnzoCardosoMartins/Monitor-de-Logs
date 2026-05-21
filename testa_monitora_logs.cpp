@@ -55,3 +55,8 @@ TEST(MonitorLog, LeituraListaMestra3) {
     EXPECT_EQ(ler_arq(escrever_log_total(logs.at(1))), log2);    
     EXPECT_EQ(ler_arq(escrever_log_total(logs.at(2))), log3);
 }
+
+TEST(MonitorLog, FormatacaoDeData) {
+    vector<string> logs = {"19/10/2006 TesteArquivoIn1", "19/10/2006 TesteArquivoIn2", "19/10/2006 TesteArquivoIn3"};
+    EXPECT_EQ(ler_arq(escrever_log_total("./logs/log_teste_arq_in.txt")), logs);
+}

@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <filesystem>
+#include <regex>
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -9,13 +10,15 @@ vector<string> ler_arq(string arq_path){
 
     vector<string> logs;
 
+    regex padrao("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}\\s+.*$");
+
     if(fs::exists(arq_path)){
         ifstream arq(arq_path);
         string linha;
 
         if(arq.is_open()){
             while(getline(arq, linha)){
-                logs.push_back(linha);
+                if(regex_match(linha, padrao)) logs.push_back(linha);
             }
             arq.close();
         } else{
